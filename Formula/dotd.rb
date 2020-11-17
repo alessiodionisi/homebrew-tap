@@ -2,26 +2,24 @@
 class Dotd < Formula
   desc "DotD is a Simple and flexible DNS over HTTPS proxy with custom resolver and other perks."
   homepage "https://github.com/adnsio/dotd"
-  version "0.1.0-beta"
+  version "0.2.0-beta"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/adnsio/dotd/releases/download/v0.1.0-beta/dotd_0.1.0-beta_darwin_amd64.tar.gz"
-    sha256 "6dad125e84ce08552cad2348070b2e4fed41885d32c8c2e971bed40d77ad15ee"
-  elsif OS.linux?
-    if Hardware::CPU.intel?
-      url "https://github.com/adnsio/dotd/releases/download/v0.1.0-beta/dotd_0.1.0-beta_linux_amd64.tar.gz"
-      sha256 "5779502b727ac7bf34d650aebac3fe4caf733002ca3d28fcd31a18dd8beea88f"
-    end
-    if Hardware::CPU.arm?
-      if Hardware::CPU.is_64_bit?
-        url "https://github.com/adnsio/dotd/releases/download/v0.1.0-beta/dotd_0.1.0-beta_linux_arm64.tar.gz"
-        sha256 "f258046de34536cd91a1865cfb662618bf65c05f5e2b7dcf8533bc65bb3f7be0"
-      else
-        url "https://github.com/adnsio/dotd/releases/download/v0.1.0-beta/dotd_0.1.0-beta_linux_armv6.tar.gz"
-        sha256 "3b0d7f12a2c0e61ba1a958e2aae075987d8d49c8fc577649e6c13a85597f7792"
-      end
-    end
+    url "https://github.com/adnsio/dotd/releases/download/v0.2.0-beta/dotd_0.2.0-beta_darwin_amd64.tar.gz"
+    sha256 "0d39991acb1e4ae32fdf9f46d62cc6a5a5ae6c7f8cfe88c3c53dd804db715649"
+  end
+  if OS.linux? && Hardware::CPU.intel?
+    url "https://github.com/adnsio/dotd/releases/download/v0.2.0-beta/dotd_0.2.0-beta_linux_amd64.tar.gz"
+    sha256 "89c7d2e0bf7d5400b0a3c243c3f36051b13065337f0d9d9f3efd7ad1ea1bbe3e"
+  end
+  if OS.linux? && Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
+    url "https://github.com/adnsio/dotd/releases/download/v0.2.0-beta/dotd_0.2.0-beta_linux_armv6.tar.gz"
+    sha256 "6ceee4f1e1977abcf2c14fa854a75f6a201ee3f9a651354befab1e7ce3ce2e4c"
+  end
+  if OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+    url "https://github.com/adnsio/dotd/releases/download/v0.2.0-beta/dotd_0.2.0-beta_linux_arm64.tar.gz"
+    sha256 "77795c4087074137cc8216104da41c441d9a2105daf636877d197d4aba32209c"
   end
 
   def install
